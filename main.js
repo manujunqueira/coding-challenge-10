@@ -41,3 +41,16 @@ sizeSelector.addEventListener(`change`, function(){ // disable/enable purchase b
         purchaseButton.disabled = false;
     }
 });
+
+
+// Task 4 - Create a Checkout Event
+
+purchaseButton.addEventListener('click', function() {
+    const selectedSize = sizeSelector.value; // Handle the "Buy Now" button click event
+
+    if (stockAvailability[selectedSize]) {  // If the size is in stock, confirm the purchase
+        alert('Thank you for purchasing with us! The size ' + selectedSize + ' has been successfully purchased.');
+    } else {
+        alert('We are out of stock for this size. You are unable to purchase it.');
+    } // If it's out of stock, it shows an error message (more like a backup safety check apart from the previous alert)
+});
