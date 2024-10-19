@@ -54,3 +54,32 @@ purchaseButton.addEventListener('click', function() {
         alert('We are out of stock for this size. You are unable to purchase it.');
     } // If it's out of stock, it shows an error message (more like a backup safety check apart from the previous alert)
 });
+
+
+// Task 5 - Implement Event Delegation for Dynamic Product List (???)
+
+const productList = document.getElementById('productList'); // Assume a list of products
+
+// Event delegation for dynamically added products
+productList.addEventListener('change', function(event) {
+    const target = event.target;
+    
+    if (target.classList.contains('sizeSelector')) {
+        // Handle product selection logic hereconst selectedSize = target.value;
+        const priceElement = target.closest('.product').querySelector('.productPrice');
+        const purchaseButton = target.closest('.product').querySelector('.purchaseButton');
+        
+        // Atualiza o preço com base no tamanho selecionado
+        priceElement.textContent = `$${productPrices[selectedSize].toFixed(2)}`;
+
+        // Verifica disponibilidade em estoque
+        if (!stockAvailability[selectedSize]) {
+            purchaseButton.disabled = true;
+            alert('Sorry, this size is out of stock!');
+        } else {
+            purchaseButton.disabled = false;
+        }
+
+    }
+}); // ?????
+
